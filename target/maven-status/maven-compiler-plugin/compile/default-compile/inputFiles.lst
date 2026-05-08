@@ -6,6 +6,7 @@
 /home/toky/S4/Web_dynamique/Forage/src/main/java/repository/PersonneRepository.java
 /home/toky/S4/Web_dynamique/Forage/src/main/java/model/Personne.java
 /home/toky/S4/Web_dynamique/Forage/src/main/java/model/Commune.java
+/home/toky/S4/Web_dynamique/Forage/src/main/java/service/RegionService.java
 /home/toky/S4/Web_dynamique/Forage/src/main/java/controller/DemandeController.java
 /home/toky/S4/Web_dynamique/Forage/src/main/java/connection/UtilDB.java
 /home/toky/S4/Web_dynamique/Forage/src/main/java/controller/LoginController.java

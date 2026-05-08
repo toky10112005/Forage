@@ -4,6 +4,7 @@ model/Region.class
 controller/LoginController.class
 repository/CommuneRepository.class
 repository/DistrictRepository.class
+service/RegionService.class
 model/Commune.class
 model/Personne.class
 service/DemandeService.class

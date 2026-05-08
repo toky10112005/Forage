@@ -5,6 +5,7 @@
     <title>Ma Vue Spring MVC</title>
 </head>
 <body>
+    <h1>Bienvenue ${username}</h1>
     <form action="/demande" method="get">
         <label for="dateDemande">Date de demande:</label>
         <input type="date" name="dateDemande" placeholder="Date de la demande" />

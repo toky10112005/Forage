@@ -9,6 +9,8 @@
 # 3. Copie le fichier .war dans le répertoire de déploiement de Tomcat.
 # ====================================================================
 
+
+
 # --- Configuration ---
 # !!! MODIFIEZ CETTE LIGNE pour pointer vers votre répertoire Tomcat !!!
 TOMCAT_PATH="/home/toky/tomcat"
@@ -62,4 +64,7 @@ fi
 
 echo "Déploiement terminé avec succès !"
 echo "L'application est disponible dans le répertoire tomcat-webapps de Tomcat."
+
+sudo systemctl restart tomcat10
+sleep 1
 

@@ -12,23 +12,17 @@ public class Demande {
     private Date dateDemande;
     private String lieu;
     private String personne;
-    private String district;
-    private String commune;
-    private String fokotany;
-    private String Lieu;
+    private String region;
 
     public Demande() {}
 
-    public Demande(int id, Date dateDemande, String lieu, String personne, String district, String commune,
-            String fokotany, String Lieu) {
+    public Demande(int id, Date dateDemande, String lieu, String personne, String region
+            ) {
         this.id = id;
         this.dateDemande = dateDemande;
         this.lieu = lieu;
         this.personne = personne;
-        this.district = district;
-        this.commune = commune;
-        this.fokotany = fokotany;
-        this.Lieu = Lieu;
+        this.region = region;
     }
 
     public int getId() {
@@ -61,30 +55,12 @@ public class Demande {
     public void setPersonne(String personne) {
         this.personne = personne;
     }
-    public String getDistrict() {
-        return district;
+    public String getRegion() {
+        return region;
     }
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-    public String getCommune() {
-        return commune;
-    }
-
-    public void setCommune(String commune) {
-        this.commune = commune;
-    }
-     public String getFokotany() {
-        return fokotany;
-    }
-
-    public void setFokotany(String fokotany) {
-        this.fokotany = fokotany;
+    public void setRegion(String region) {
+        this.region = region;
     }
     
-        // public String getLieu() {
-        //     return Lieu;
-        // }
 
 }

@@ -1,7 +1,17 @@
+service/PersonneService.class
 repository/DemandeRepository.class
+model/Region.class
+controller/LoginController.class
+repository/CommuneRepository.class
+repository/DistrictRepository.class
+model/Commune.class
+model/Personne.class
 service/DemandeService.class
 model/Demande.class
+repository/RegionRepository.class
 model/Status.class
+repository/PersonneRepository.class
+model/District.class
 model/DemandeStatus.class
 connection/UtilDB.class
 controller/DemandeController.class

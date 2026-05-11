@@ -8,8 +8,11 @@
 /home/toky/S4/Web_dynamique/Forage/src/main/java/model/Commune.java
 /home/toky/S4/Web_dynamique/Forage/src/main/java/service/RegionService.java
 /home/toky/S4/Web_dynamique/Forage/src/main/java/controller/DemandeController.java
+/home/toky/S4/Web_dynamique/Forage/src/main/java/service/LieuForageService.java
+/home/toky/S4/Web_dynamique/Forage/src/main/java/repository/LieuForageRepository.java
 /home/toky/S4/Web_dynamique/Forage/src/main/java/connection/UtilDB.java
 /home/toky/S4/Web_dynamique/Forage/src/main/java/controller/LoginController.java
+/home/toky/S4/Web_dynamique/Forage/src/main/java/model/LieuForage.java
 /home/toky/S4/Web_dynamique/Forage/src/main/java/model/Status.java
 /home/toky/S4/Web_dynamique/Forage/src/main/java/repository/DistrictRepository.java
 /home/toky/S4/Web_dynamique/Forage/src/main/java/repository/CommuneRepository.java

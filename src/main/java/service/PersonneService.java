@@ -29,4 +29,9 @@ public class PersonneService {
     public Personne save(Personne personne) {
         return personneRepository.save(personne);
     }
+
+    public Personne getPersonneByName(String nom) {
+        java.util.List<Personne> personnes = personneRepository.findByNom(nom);
+        return personnes.isEmpty() ? null : personnes.get(0);
+    }
 }

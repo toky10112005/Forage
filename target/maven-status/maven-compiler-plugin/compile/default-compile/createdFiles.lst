@@ -1,5 +1,6 @@
 service/PersonneService.class
 repository/DemandeRepository.class
+repository/LieuForageRepository.class
 model/Region.class
 controller/LoginController.class
 repository/CommuneRepository.class
@@ -8,10 +9,12 @@ service/RegionService.class
 model/Commune.class
 model/Personne.class
 service/DemandeService.class
+service/LieuForageService.class
 model/Demande.class
 repository/RegionRepository.class
 model/Status.class
 repository/PersonneRepository.class
+model/LieuForage.class
 model/District.class
 model/DemandeStatus.class
 connection/UtilDB.class

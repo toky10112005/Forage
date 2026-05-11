@@ -17,14 +17,16 @@ public class DemandeStatus {
     @JoinColumn(name = "status_id")
     private Status status;
 
-     public DemandeStatus() {
+    private Date datemutation;
+
+    public DemandeStatus() {
     }
 
-    public DemandeStatus(int id, model.Demande demande, model.Status status) {
+    public DemandeStatus(int id, Demande demande, Status status, Date datemutation) {
         this.id = id;
         this.demande = demande;
         this.status = status;
-        
+        this.datemutation = datemutation;
     }
 
     public int getId() {
@@ -35,20 +37,28 @@ public class DemandeStatus {
         this.id = id;
     }
 
-     public model.Demande getDemande() {
+    public Demande getDemande() {
         return demande;
     }
 
-    public void setDemande(model.Demande demande) {
+    public void setDemande(Demande demande) {
         this.demande = demande;
     }
 
-     public model.Status getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(model.Status status) {
+    public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Date getDatemutation() {
+        return datemutation;
+    }
+
+    public void setDatemutation(Date datemutation) {
+        this.datemutation = datemutation;
     }
 
 }

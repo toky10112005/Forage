@@ -1,7 +1,6 @@
 package model;
 
 import jakarta.persistence.*;
-import java.util.Date;
 
 @Entity
 public class Status {
@@ -9,15 +8,14 @@ public class Status {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
    
-    private String status;
+    private String nom;
 
-     public Status() {
+    public Status() {
     }
 
-    public Status(int id, String status) {
+    public Status(int id, String nom) {
         this.id = id;
-        this.status = status;
-        
+        this.nom = nom;
     }
 
     public int getId() {
@@ -28,12 +26,12 @@ public class Status {
         this.id = id;
     }
 
-     public String getStatus() {
-        return status;
+    public String getNom() {
+        return nom;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
 }

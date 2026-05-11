@@ -7,7 +7,8 @@
     <title>Login</title>
 </head>
 <body>
-    <form action="${pageContext.request.contextPath}/home" method="post">
+    <!-- <form action="${pageContext.request.contextPath}/home" method="post"> -->
+        <form action="${pageContext.request.contextPath}/home" method="post">
         <label for="username">Username:</label>
         <input type="text" name="username" placeholder="Username" />
         <button type="submit">Login</button>

@@ -16,6 +16,15 @@ CREATE TABLE Demande(
     region VARCHAR(255)
 );
 
+CREATE TABLE LieuForage(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_demande INT,
+    region VARCHAR(255),
+    district VARCHAR(255),
+    commune VARCHAR(255),
+    FOREIGN KEY (id_demande) REFERENCES Demande(id)
+);
+
 CREATE TABLE Status(
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(255)
@@ -24,7 +33,7 @@ CREATE TABLE Status(
 CREATE TABLE DemandeStatus(
     id INT PRIMARY KEY AUTO_INCREMENT,
     demande_id INT,
-    status_id INT,
+    status_id INT DEFAULT 1,
     Datemutation DATE,
     FOREIGN KEY (demande_id) REFERENCES Demande(id),
     FOREIGN KEY (status_id) REFERENCES Status(id)
@@ -48,6 +57,11 @@ CREATE TABLE Commune(
     nom VARCHAR(255),
     FOREIGN KEY (id_district) REFERENCES District(id)
 );
+
+INSERT INTO Status (nom) VALUES 
+('Créer'),
+('Terminé'),
+('Rejeté');
 
 -- CREATE TABLE Fokotany(
 --     id INT PRIMARY KEY AUTO_INCREMENT,

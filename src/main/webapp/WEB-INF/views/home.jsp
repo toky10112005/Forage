@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Bienvenue ${username}</h1>
-    <form action="/demande" method="get">
+    <form action="${pageContext.request.contextPath}/home/demande" method="get">
         <label for="dateDemande">Date de demande:</label>
         <input type="date" name="dateDemande" placeholder="Date de la demande" />
 
@@ -33,6 +33,9 @@
         <select name="Commune" id="Commune">
             <option value=""></option>
         </select>
+
+        <label for="Lieu">Lieu:</label>
+        <input type="text" name="lieu" placeholder="Lieu de forage">
 
         <label for="Personne">Personne:</label>
         <input type="text" name="Personne" placeholder="Personne">

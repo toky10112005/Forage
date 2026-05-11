@@ -3,13 +3,13 @@ package controller;
 // import model.Demande;
 import model.Commune;
 import model.District;
-import model.Personne;
-import model.Region;
-// import service.DemandeService;
-import service.PersonneService;
-import service.RegionService;
+import model.Demande;
+import service.LieuForageService;
+import service.DemandeService;
 import repository.CommuneRepository;
 import repository.DistrictRepository;
+import repository.DemandeStatusRepository;
+import service.DemandeStatusService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
@@ -29,16 +31,15 @@ import org.springframework.web.util.HtmlUtils;
 // import javax.swing.plaf.synth.Region;
 
 @Controller
-@RequestMapping("/home")//Généraliser 
+//@SessionAttributes("userID")
+@RequestMapping("/home")
 public class DemandeController {
 
     // @Autowired
     // private DemandeService demandeService;
 
     @Autowired
-    private PersonneService personneService;
-    @Autowired
-    private RegionService regionService;
+    private LieuForageService lieuForageService;
 
     @Autowired
     private DistrictRepository districtRepository;
@@ -46,19 +47,12 @@ public class DemandeController {
     @Autowired
     private CommuneRepository communeRepository;
 
+    @Autowired
+    private DemandeService demandeService;
 
-    @PostMapping
-    public String home(@RequestParam("username") String nom,Model model) {//ViewResolver no ampiasaina
-      //  personneService = new PersonneService();Si on créer un nouvelle objet ici celà n'est pas géré par spring
-        personneService.save(new Personne(nom));
-        model.addAttribute("username", nom);
-
-        ArrayList<Region> listRegion=regionService.getAllRegions();
-
-        model.addAttribute("listRegion", listRegion);
-        return "home";
-    }
-
+    @Autowired
+    private DemandeStatusService demandeStatusService;
+   
       @GetMapping(value = "/districts", produces = "text/html; charset=UTF-8")
       @ResponseBody
       public String districts(@RequestParam("regionId") int regionId) {
@@ -93,8 +87,41 @@ public class DemandeController {
         return html.toString();
       }
 
-    // @GetMapping("/demande")
-    // public String demande(){
-    //     Date date=
-    // }
+    @GetMapping("/demande")
+    public String demande(@SessionAttribute("userID") int userID,
+            @RequestParam(value = "dateDemande", required = false) String dateDemande,
+            @RequestParam(value = "Region", required = false) String region, 
+            @RequestParam(value = "District", required = false) String district, 
+            @RequestParam(value = "Commune", required = false) String commune, 
+            @RequestParam(value = "lieu", required = false) String lieu,
+            @RequestParam(value = "Personne", required = false) String personne,
+            Model model) {
+        
+        model.addAttribute("region", region);
+        model.addAttribute("district", district);
+        model.addAttribute("commune", commune);
+        model.addAttribute("lieu", lieu);
+
+        try {
+            lieuForageService.save(region, district, commune);
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date date = sdf.parse(dateDemande);
+
+            Demande demande = demandeService.save(userID, date, lieu, personne, region);
+            
+            if (demande != null) {
+                demandeStatusService.save(demande.getId(), 1, date);
+            }
+
+            // Récupérer toutes les demandes avec leurs statuts
+            ArrayList<model.DemandeStatus> demandeStatusList = demandeStatusService.getAllDemandeStatus();
+            model.addAttribute("demandeStatusList", demandeStatusList);
+
+        } catch (Exception e) {
+            model.addAttribute("error", "Erreur lors de la sauvegarde: " + e.getMessage());
+            return "home";
+        }
+
+        return "listedemande";
+    }
 }

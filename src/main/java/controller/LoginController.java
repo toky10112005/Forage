@@ -28,7 +28,6 @@ public class LoginController {
     private RegionService regionService;
 
 
-
     @GetMapping("/")
     public String home() {//ViewResolver no ampiasaina
         return "login";
@@ -47,9 +46,9 @@ public class LoginController {
         model.addAttribute("userID", personne.getId());
 
         ArrayList<Region> listRegion=regionService.getAllRegions();
-
         model.addAttribute("listRegion", listRegion);
-        return "home";
+        // return "home";
+        return "choix";
     }
     
 }

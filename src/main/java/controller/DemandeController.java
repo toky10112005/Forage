@@ -35,9 +35,6 @@ import org.springframework.web.util.HtmlUtils;
 @RequestMapping("/home")
 public class DemandeController {
 
-    // @Autowired
-    // private DemandeService demandeService;
-
     @Autowired
     private LieuForageService lieuForageService;
 
@@ -52,7 +49,24 @@ public class DemandeController {
 
     @Autowired
     private DemandeStatusService demandeStatusService;
-   
+
+    @GetMapping("/redirectHome")
+    public String redirectHome() {
+        return "home";
+    }
+
+    @GetMapping("/redirectList")
+    public String redirectList(Model model) {
+      ArrayList<model.DemandeStatus> demandeStatusList = demandeStatusService.getAllDemandeStatus();
+            model.addAttribute("demandeStatusList", demandeStatusList);
+        return "listedemande";
+    }
+
+    @GetMapping("/redirectRecherche")
+    public String redirectRecherche(){
+      return "recherche";
+    }
+
       @GetMapping(value = "/districts", produces = "text/html; charset=UTF-8")
       @ResponseBody
       public String districts(@RequestParam("regionId") int regionId) {
@@ -112,7 +126,6 @@ public class DemandeController {
             if (demande != null) {
                 demandeStatusService.save(demande.getId(), 1, date);
             }
-
             // Récupérer toutes les demandes avec leurs statuts
             ArrayList<model.DemandeStatus> demandeStatusList = demandeStatusService.getAllDemandeStatus();
             model.addAttribute("demandeStatusList", demandeStatusList);
@@ -121,7 +134,12 @@ public class DemandeController {
             model.addAttribute("error", "Erreur lors de la sauvegarde: " + e.getMessage());
             return "home";
         }
-
         return "listedemande";
     }
+
+      @GetMapping(value = "/findByReference", produces = "application/json; charset=UTF-8")
+      @ResponseBody
+      public Demande findByReference(@RequestParam("reference") int reference) {
+        return demandeService.findById(reference);
+      }
 }

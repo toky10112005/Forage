@@ -27,6 +27,10 @@ public class DemandeService {
         return demandeRepository.save(demande);
     }
 
+    public Demande findById(int id) {
+        return demandeRepository.findById(id).orElse(null);
+    }
+
     // public void addDemande(demande d) {
     //     demandeRepository.save(d);
     // }

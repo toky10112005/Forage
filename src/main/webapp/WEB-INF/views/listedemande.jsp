@@ -58,6 +58,7 @@
                     <td><%= demande.getDateDemande() %></td>
                     <td><%= status != null ? status.getNom() : "N/A" %></td>
                     <td><%= ds.getDatemutation() %></td>
+                    <!-- <td><a href="${pageContext.request.contextPath}/modifierDemande?id=<%= demande.getId() %>">Modifier</a></td> -->
                 </tr>
                 <%
                         }

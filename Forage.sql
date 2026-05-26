@@ -6,10 +6,11 @@ CREATE TABLE Personne(
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(255)
 );
-
+-- tsy adino ny manisy champ référence
 CREATE TABLE Demande(
     id INT PRIMARY KEY AUTO_INCREMENT,
     id_personne INT,
+    reference VARCHAR(10) UNIQUE,
     dateDemande DATE,
     lieu VARCHAR(255),
     personne VARCHAR(255),
@@ -24,7 +25,7 @@ CREATE TABLE LieuForage(
     commune VARCHAR(255),
     FOREIGN KEY (id_demande) REFERENCES Demande(id)
 );
-
+-- créer par defaut
 CREATE TABLE Status(
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(255)
@@ -58,17 +59,35 @@ CREATE TABLE Commune(
     FOREIGN KEY (id_district) REFERENCES District(id)
 );
 
+CREATE TABLE Devis(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_demande INT,
+    dateDevis DATE,
+    FOREIGN KEY (id_demande) REFERENCES Demande(id)
+);
+
+CREATE TABLE DevisDetails(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    libelle VARCHAR(255) NOT NULL,
+    quantite INT NOT NULL,
+    PU DECIMAL(10,2) NOT NULL,
+    Montant DECIMAL(10,2) NOT NULL
+    );
+
+-- CREATE TABLE DevisStatut(
+--     id INT PRIMARY KEY  AUTO_INCREMENT,
+--     nom VARCHAR(50)
+-- ); 
+
+INSERT INTO Status (nom) VALUES
+('etude'),
+('forage');
+
 INSERT INTO Status (nom) VALUES 
 ('Créer'),
 ('Terminé'),
 ('Rejeté');
 
--- CREATE TABLE Fokotany(
---     id INT PRIMARY KEY AUTO_INCREMENT,
---     id_commune INT,
---     nom VARCHAR(255),
---     FOREIGN KEY (id_commune) REFERENCES Commune(id)
--- );
 
 INSERT INTO Region (nom) VALUES 
 ('Analamanga'),
@@ -186,4 +205,33 @@ INSERT INTO Commune (id_district, nom) VALUES
 (9, 'Soavinandriana'),
 (9, 'Analavory'),
 (9, 'Itasy'),
-(10, 'Tsiroanomandidy');
+(10, 'Tsiroanomandidy'),
+(11, 'Boriziny-Vaovao'),
+(11, 'Maroantsetra'),
+(11, 'Mandritsara'),
+(12, 'Toliara I'),
+(12, 'Toliara II'),
+(12, 'Ampanihy'),
+(12, 'Benenitra'),
+(13, 'Sambava'),
+(13, 'Andapa'),
+(14, 'Farafangana'),
+(14, 'Vangaindrano'),
+(14, 'Ivohibe');
+
+-- Données de test: Personne
+INSERT INTO Personne (nom) VALUES 
+('joda');
+
+-- Données de test: Demande
+INSERT INTO Demande (id_personne, dateDemande, lieu, personne, region) VALUES 
+(1, '2026-05-10', 'Antananarivo', 'Rakoto Jean', 'Analamanga');
+
+INSERT INTO LieuForage (id_demande, region, district, commune) VALUES 
+(1, 'Analamanga', 'Antananarivo', 'Isoraka');
+
+-- -- Données de test: Etude liées à la Demande
+-- INSERT INTO etude (id_demande, description, cout, dateEtude) VALUES 
+-- (1, 'Étude hydrogéologique préalable', 5000.00, '2026-05-11'),
+-- (1, 'Analyse de la qualité de l''eau', 3500.00, '2026-05-12'),
+-- (1, 'Évaluation environnementale', 2500.00, '2026-05-13');
